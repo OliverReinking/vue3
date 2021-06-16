@@ -1,5 +1,5 @@
 # VUE 3
-> Die ersten Schritte in Vue 3 Oliver Reinking.
+> Die ersten Schritte in Vue 3.
 
 ## [Single FileComponents](singlefilecomponent.md)
 

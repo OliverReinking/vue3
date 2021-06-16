@@ -4,6 +4,8 @@
 
 ### 1. Beispiel
 
+#### App.vue
+
 ```js
 <template>
   <div class="container px-6 py-16 prose">
@@ -27,6 +29,8 @@ export default {
 ```
 
 ### 2. Beispiel
+
+#### App.vue
 
 ```js
 <template>
@@ -57,6 +61,8 @@ export default {
 ## Binding HTML
 
 ### 1. Beispiel
+
+#### App.vue
 
 ```js
 <template>
@@ -91,6 +97,8 @@ export default {
 
 ### 1. Beispiel
 
+#### App.vue
+
 ```js
 <template>
   <div class="container px-6 py-16 prose">
@@ -113,6 +121,8 @@ export default {
 ```
 
 ### 2. Beispiel
+
+#### App.vue
 
 ```js
 <template>
@@ -143,6 +153,8 @@ export default {
 
 ### 1. Beispiel
 
+#### App.vue
+
 ```js
 <template>
   <div class="container px-6 py-16 prose">
@@ -169,6 +181,8 @@ export default {
 ```
 
 ### 2. Beispiel
+
+#### App.vue
 
 ```js
 <template>
@@ -206,6 +220,8 @@ export default {
 ```
 
 ### 3. Beispiel
+
+#### App.vue
 
 ```js
 <template>
@@ -249,6 +265,8 @@ export default {
 ```
 
 ### 4. Beispiel
+
+#### App.vue
 
 ```js
 <template>
@@ -296,6 +314,8 @@ export default {
 ```
 
 ### 5. Beispiel
+
+#### App.vue
 
 ```js
 <template>
@@ -370,6 +390,8 @@ export default {
 
 ### 1. Beispiel
 
+#### App.vue
+
 ```js
 <template>
   <div class="container px-6 py-16 prose">
@@ -399,6 +421,8 @@ export default {
 ```
 
 ### 2. Beispiel
+
+#### App.vue
 
 ```js
 <template>
@@ -432,6 +456,8 @@ export default {
 
 ### 3. Beispiel
 
+#### App.vue
+
 ```js
 <template>
   <div class="container px-6 py-16 prose">
@@ -464,6 +490,8 @@ export default {
 ```
 
 ### 4. Beispiel
+
+#### App.vue
 
 ```js
 <template>
@@ -506,6 +534,8 @@ export default {
 
 ### 5. Beispiel
 
+#### App.vue
+
 ```js
 <template>
   <div class="container px-6 py-16 prose">
@@ -543,26 +573,802 @@ export default {
 
 ### 1. Beispiel
 
-```js
-```
+#### App.vue
 
 ```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Conditional Rendering
+    </h1>
+    <div v-if="inzidenzWert > 165" style="backgroundColor: red; color: white">
+      Die Inzidenz liegt über 165!
+    </div>
+    <div
+      v-else-if="inzidenzWert > 100 && inzidenzWert < 165"
+      style="backgroundColor: orange; color: white"
+    >
+      Die Inzidenz liegt über 100, aber unter 165!
+    </div>
+    <div
+      v-else-if="inzidenzWert > 50 && inzidenzWert < 100"
+      style="backgroundColor: yellow; color: black"
+    >
+      Die Inzidenz liegt über 50, aber unter 100!
+    </div>
+    <div v-else style="backgroundColor: green; color: white">
+      Die Inzidenz liegt unter 50!
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      inzidenzWert: 75,
+    };
+  },
+};
+</script>
 ```
 
 ### 2. Beispiel
 
-```js
-```
+#### App.vue
 
 ```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Conditional Rendering
+    </h1>
+    <div v-if="display === true">
+      <h2>VUE 3</h2>
+      <h2>Tailwindcss</h2>
+      <h2>daisyUI</h2>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      display: true,
+    };
+  },
+};
+</script>
 ```
 
 ### 3. Beispiel
 
-```js
-```
+#### App.vue
 
 ```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Conditional Rendering
+    </h1>
+    <div v-show="display">
+      Offensichtlich ist display true.
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      display: true,
+    };
+  },
+};
+</script>
 ```
 
+## List Rendering
 
+### 1. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      List Rendering
+    </h1>
+    <h2 v-for="name in names" :key="name">
+      {{ name}}
+    </h2>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      names: [
+        'Vue 3',
+        'Tailwindcss',
+        'daisyUI'
+      ]
+    };
+  },
+};
+</script>
+```
+
+### 2. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      List Rendering
+    </h1>
+    <h2 v-for="(name, index) in names" :key="index">
+      {{ name}}, {{ index }}
+    </h2>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      names: [
+        'Vue 3',
+        'Tailwindcss',
+        'daisyUI'
+      ]
+    };
+  },
+};
+</script>
+```
+
+### 3. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      List Rendering
+    </h1>
+    <h2 v-for="(fullName, index) in fullNames" :key="index">
+      {{ fullName.name }} - {{ fullName.description }}
+    </h2>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      fullNames: [
+        { name: "VUE 3", description: "JavaScript-Framework" },
+        { name: "tailwindcss", description: "CSS-Framework" },
+        { name: "daisyUI", description: "tailwindcss-Erweiterung" },
+      ],
+    };
+  },
+};
+</script>
+
+```
+
+### 4. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      List Rendering
+    </h1>
+    <template v-for="(framework, index) in frameworks" :key="index">
+      <h3>{{ framework.name }}</h3>
+      <h4>Liste der Plugins</h4>
+      <h5 v-for="(plugin, index) in framework.plugins" :key="index">
+        {{ plugin }}
+      </h5>
+    </template>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      frameworks: [
+        {
+          name: "VUE 3",
+          plugins: ["vuex", "vue-router", "vuetify"],
+        },
+        {
+          name: "tailwindcss",
+          plugins: ["daisyUI", "@tailwindcss/typography"],
+        },
+      ],
+    };
+  },
+};
+</script>
+```
+
+### 5. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      List Rendering
+    </h1>
+    <template v-for="(item, key, index) in listFrameworks" :key="index">
+      <h3>{{ key }}: {{ item }}</h3>
+    </template>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      listFrameworks: {
+        name: "VUE 3",
+        description: "JavaScript-Framework",
+        language: "JavaScript",
+      },
+    };
+  },
+};
+</script>
+```
+
+## Lists and Keys
+
+### 1. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+## Conditional List Rendering
+
+### 1. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Conditional List Rendering
+    </h1>
+    <template v-for="name in names" :key="name">
+      <h5 v-if="name === 'Annalena'">{{ name }}</h5>
+    </template>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      names: ["Olaf", "Armin", "Annalena"],
+    };
+  },
+};
+</script>
+```
+
+## Methods
+
+### 1. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Methods
+    </h1>
+    <h4>Summe von 1 + 2 + 3 + 4 + 5 + 6 = {{ add() }}</h4>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      names: ["Olaf", "Armin", "Annalena"],
+    };
+  },
+  //
+  methods: {
+    add() {
+      return 1 + 2 + 3 + 4 + 5 + 6;
+    },
+  },
+};
+</script>
+```
+
+### 2. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Methods
+    </h1>
+    <h4>Summe von 1 + 2 + 3 + 4 + 5 + 6 = {{ add(1, 2, 3, 4, 5, 6) }}</h4>
+    <h4>Summe von 1 + 2 + 3 + 5 + 8 + 13 = {{ add(1, 2, 3, 5, 8, 13) }}</h4>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  methods: {
+    add(a, b, c, d, e, f) {
+      return a + b + c + d + e + f;
+    },
+  },
+};
+</script>
+```
+### 3. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Methods
+    </h1>
+    <h4>Multipliziere die Variable price mit dem normalen Mehrwertsteuersatz {{ taxRate }} = {{ multiply(price) }} </h4>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      price: 100,
+      taxRate: 19,
+    };
+  },
+  //
+  methods: {
+    multiply(num) {
+      return num * (100 + this.taxRate) / 100;
+    }
+  },
+};
+</script>
+```
+
+## Event Handling
+
+### 1. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Event Handling
+    </h1>
+    <h5>{{ name }}</h5>
+    <div class="mt-8">
+      <button v-on:click="name = 'Annalena'" class="btn btn-sm btn-primary">Ändere den Namen</button>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      name: "Angela",
+    };
+  },
+};
+</script>
+```
+
+### 2. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Event Handling
+    </h1>
+    <h5>{{ count }}</h5>
+    <div class="mt-8 btn-group">
+      <button v-on:click="count += 1" class="btn btn-sm btn-primary">
+        Plus
+      </button>
+      <button v-on:click="count += -1" class="btn btn-sm btn-secondary">
+        Minus
+      </button>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      count: 0,
+    };
+  },
+};
+</script>
+```
+
+### 3. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Event Handling
+    </h1>
+    <h5>{{ count }}</h5>
+    <div class="mt-8 btn-group">
+      <button v-on:click="changeCount(1)" class="btn btn-sm btn-primary">
+        Plus
+      </button>
+      <button v-on:click="changeCount(-1)" class="btn btn-sm btn-secondary">
+        Minus
+      </button>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      count: 0,
+    };
+  },
+  //
+  methods: {
+    changeCount(value) {
+      this.count = this.count + value;
+    },
+  },
+};
+</script>
+```
+
+### 4. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Event Handling
+    </h1>
+    <h5>{{ count }}</h5>
+    <div class="mt-8 btn-group">
+      <button v-on:click="changeCount(1)" class="btn btn-sm btn-primary">
+        Plus 1
+      </button>
+      <button v-on:click="changeCount(5)" class="btn btn-sm btn-primary">
+        Plus 5
+      </button>
+      <button v-on:click="changeCount(-1)" class="btn btn-sm btn-secondary">
+        Minus 1
+      </button>
+      <button v-on:click="changeCount(-5)" class="btn btn-sm btn-secondary">
+        Minus 5
+      </button>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      count: 0,
+    };
+  },
+  //
+  methods: {
+    changeCount(value) {
+      this.count = this.count + value;
+    },
+  },
+};
+</script>
+```
+
+### 5. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Event Handling
+    </h1>
+    <h5>{{ count }}</h5>
+    <div class="mt-8 btn-group">
+      <button v-on:click="changeCount(1, $event)" class="btn btn-sm btn-primary">
+        Plus 1
+      </button>
+      <button v-on:click="changeCount(5, $event)" class="btn btn-sm btn-primary">
+        Plus 5
+      </button>
+      <button v-on:click="changeCount(-1, $event)" class="btn btn-sm btn-secondary">
+        Minus 1
+      </button>
+      <button v-on:click="changeCount(-5, $event)" class="btn btn-sm btn-secondary">
+        Minus 5
+      </button>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      count: 0,
+    };
+  },
+  //
+  methods: {
+    changeCount(value, event) {
+      console.log("event: ", event);
+      this.count = this.count + value;
+    },
+  },
+};
+</script>
+```
+
+### 6. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Event Handling
+    </h1>
+    <h5>{{ name }} {{ lastName }} </h5>
+    <h5>{{ count }}</h5>
+    <div class="mt-8 btn-group">
+      <button
+        v-on:click="changeName($event), changeCount(1, $event)"
+        class="btn btn-sm btn-primary"
+      >
+        Plus 1
+      </button>
+      <button
+        v-on:click="changeCount(5, $event)"
+        class="btn btn-sm btn-primary"
+      >
+        Plus 5
+      </button>
+      <button
+        v-on:click="changeCount(-1, $event)"
+        class="btn btn-sm btn-secondary"
+      >
+        Minus 1
+      </button>
+      <button
+        v-on:click="changeCount(-5, $event)"
+        class="btn btn-sm btn-secondary"
+      >
+        Minus 5
+      </button>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      name: "Angela",
+      lastName: "Merkel",
+      count: 0,
+    };
+  },
+  //
+  methods: {
+    changeName(event) {
+      console.log("changeName: ", event);
+      this.name = "Annalena";
+    },
+    changeCount(value, event) {
+      console.log("changeCount: ", event);
+      this.count = this.count + value;
+    },
+  },
+};
+</script>
+```
+
+## Form Handling
+
+### 1. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### 2. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### 3. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### 4. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### 5. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### 6. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### 7. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### 8. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+## X
+
+### x. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### x. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### x. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### x. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### x. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### x. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### x. Beispiel
+
+#### App.vue
+
+```js
+
+```
+
+### x. Beispiel
+
+#### App.vue
+
+```js
+
+```
