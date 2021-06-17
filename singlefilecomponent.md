@@ -944,6 +944,7 @@ export default {
 };
 </script>
 ```
+
 ### 3. Beispiel
 
 #### App.vue
@@ -1248,7 +1249,62 @@ export default {
 #### App.vue
 
 ```js
-
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Form Handling
+    </h1>
+    <h2>Eingabebereich</h2>
+    <form>
+      <div class="p-2 flex flex-wrap items-center justify-between -mx-4">
+        <div class="form-control w-1/2 px-4">
+          <label class="label" for="firstName">
+            <span class="label-text">Vorname</span>
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            v-model="form.firstName"
+            placeholder="Vorname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="form-control w-1/2 px-4">
+          <label class="label" vor="lastName">
+            <span class="label-text">Nachname</span>
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            v-model="form.lastName"
+            placeholder="Nachname"
+            class="input input-bordered"
+          />
+        </div>
+      </div>
+    </form>
+    <h2>Ausgabebereich</h2>
+    <div class="p-2 shadow-lg bg-gray-200 text-gray-900">
+      <div v-for="(item, key, index) in form" :key="index">
+        {{ key }}: {{ item }}
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Klaus",
+        lastName: "Fischer",
+      },
+    };
+  },
+};
+</script>
 ```
 
 ### 2. Beispiel
@@ -1256,6 +1312,74 @@ export default {
 #### App.vue
 
 ```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Form Handling
+    </h1>
+    <h2>Eingabebereich</h2>
+    <form>
+      <div class="p-2 flex flex-wrap items-center justify-between -mx-4">
+        <div class="form-control w-1/2 px-4">
+          <label class="label" for="firstName">
+            <span class="label-text">Vorname</span>
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            v-model="form.firstName"
+            placeholder="Vorname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="form-control w-1/2 px-4">
+          <label class="label" vor="lastName">
+            <span class="label-text">Nachname</span>
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            v-model="form.lastName"
+            placeholder="Nachname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="hobbies">
+            <span class="label-text">Hobbys</span>
+          </label>
+          <textarea
+            id="hobbies"
+            v-model="form.hobbies"
+            placeholder="Deine Hobbys"
+            class="textarea h-24 textarea textarea-bordered"
+          />
+        </div>
+      </div>
+    </form>
+    <h2>Ausgabebereich</h2>
+    <div class="p-2 shadow-lg bg-gray-200 text-gray-900">
+      <div v-for="(item, key, index) in form" :key="index">
+        {{ key }}: {{ item }}
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Klaus",
+        lastName: "Fischer",
+        hobbies: "Fußball, Tor des Monats",
+      },
+    };
+  },
+};
+</script>
 
 ```
 
@@ -1264,6 +1388,90 @@ export default {
 #### App.vue
 
 ```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Form Handling
+    </h1>
+    <h2>Eingabebereich</h2>
+    <form>
+      <div class="p-2 flex flex-wrap items-center justify-between -mx-4">
+        <div class="form-control w-1/2 px-4">
+          <label class="label" for="firstName">
+            <span class="label-text">Vorname</span>
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            v-model="form.firstName"
+            placeholder="Vorname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="form-control w-1/2 px-4">
+          <label class="label" vor="lastName">
+            <span class="label-text">Nachname</span>
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            v-model="form.lastName"
+            placeholder="Nachname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="hobbies">
+            <span class="label-text">Hobbys</span>
+          </label>
+          <textarea
+            id="hobbies"
+            v-model="form.hobbies"
+            placeholder="Deine Hobbys"
+            class="textarea h-24 textarea textarea-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="color">
+            <span class="label-text">Lieblingsfarbe</span>
+          </label>
+          <select
+            id="color"
+            class="select select-bordered w-full"
+            v-model="form.color"
+          >
+            <option value="">Wähle Deine Lieblingsfarbe</option>
+            <option value="blue">blau</option>
+            <option value="red">rot</option>
+            <option value="green">grün</option>
+          </select>
+        </div>
+      </div>
+    </form>
+    <h2>Ausgabebereich</h2>
+    <div class="p-2 shadow-lg bg-gray-200 text-gray-900">
+      <div v-for="(item, key, index) in form" :key="index">
+        {{ key }}: {{ item }}
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Klaus",
+        lastName: "Fischer",
+        hobbies: "Fußball, Tor des Monats",
+        color: "blue",
+      },
+    };
+  },
+};
+</script>
 
 ```
 
@@ -1272,6 +1480,107 @@ export default {
 #### App.vue
 
 ```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Form Handling
+    </h1>
+    <h2>Eingabebereich</h2>
+    <form>
+      <div class="p-2 flex flex-wrap items-center justify-between -mx-4">
+        <div class="form-control w-1/2 px-4">
+          <label class="label" for="firstName">
+            <span class="label-text">Vorname</span>
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            v-model="form.firstName"
+            placeholder="Vorname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="form-control w-1/2 px-4">
+          <label class="label" vor="lastName">
+            <span class="label-text">Nachname</span>
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            v-model="form.lastName"
+            placeholder="Nachname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="hobbies">
+            <span class="label-text">Hobbys</span>
+          </label>
+          <textarea
+            id="hobbies"
+            v-model="form.hobbies"
+            placeholder="Deine Hobbys"
+            class="textarea h-24 textarea textarea-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="color">
+            <span class="label-text">Lieblingsfarbe</span>
+          </label>
+          <select
+            id="color"
+            class="select select-bordered w-full"
+            v-model="form.color"
+          >
+            <option value="">Wähle Deine Lieblingsfarbe</option>
+            <option value="blue">blau</option>
+            <option value="red">rot</option>
+            <option value="green">grün</option>
+          </select>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="favoriteClubs">
+            <span class="label-text">Lieblingsvereine</span>
+          </label>
+          <select
+            id="color"
+            class="select select-bordered w-full h-36"
+            v-model="form.favoriteClubs"
+            multiple
+          >
+            <option value="FC Schalke 04">FC Schalke 04</option>
+            <option value="Borussia Dortmund">Borussia Dortmund</option>
+            <option value="MSV Duisburg">MSV Duisburg</option>
+            <option value="Rot-Weiss Essen">Rot-Weiss Essen</option>
+          </select>
+        </div>
+      </div>
+    </form>
+    <h2>Ausgabebereich</h2>
+    <div class="p-2 shadow-lg bg-gray-200 text-gray-900">
+      <div v-for="(item, key, index) in form" :key="index">
+        {{ key }}: {{ item }}
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Klaus",
+        lastName: "Fischer",
+        hobbies: "Fußball, Tor des Monats",
+        color: "blue",
+        favoriteClubs: ["FC Schalke 04"],
+      },
+    };
+  },
+};
+</script>
 
 ```
 
@@ -1280,6 +1589,124 @@ export default {
 #### App.vue
 
 ```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Form Handling
+    </h1>
+    <h2>Eingabebereich</h2>
+    <form>
+      <div class="p-2 flex flex-wrap items-center justify-between -mx-4">
+        <div class="form-control w-1/2 px-4">
+          <label class="label" for="firstName">
+            <span class="label-text">Vorname</span>
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            v-model="form.firstName"
+            placeholder="Vorname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="form-control w-1/2 px-4">
+          <label class="label" vor="lastName">
+            <span class="label-text">Nachname</span>
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            v-model="form.lastName"
+            placeholder="Nachname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="hobbies">
+            <span class="label-text">Hobbys</span>
+          </label>
+          <textarea
+            id="hobbies"
+            v-model="form.hobbies"
+            placeholder="Deine Hobbys"
+            class="textarea h-24 textarea textarea-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="color">
+            <span class="label-text">Lieblingsfarbe</span>
+          </label>
+          <select
+            id="color"
+            class="select select-bordered w-full"
+            v-model="form.color"
+          >
+            <option value="">Wähle Deine Lieblingsfarbe</option>
+            <option value="blue">blau</option>
+            <option value="red">rot</option>
+            <option value="green">grün</option>
+          </select>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="favoriteClubs">
+            <span class="label-text">Lieblingsvereine</span>
+          </label>
+          <select
+            id="color"
+            class="select select-bordered w-full h-36"
+            v-model="form.favoriteClubs"
+            multiple
+          >
+            <option value="FC Schalke 04">FC Schalke 04</option>
+            <option value="Borussia Dortmund">Borussia Dortmund</option>
+            <option value="MSV Duisburg">MSV Duisburg</option>
+            <option value="Rot-Weiss Essen">Rot-Weiss Essen</option>
+          </select>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="goal"
+                v-model="form.goalOfTheMonth"
+                class="checkbox"
+              />
+              <span class="checkbox-mark"></span>
+            </div>
+            <span class="label-text" for="goal"
+              >Hast Du schon einmal das Tor des Monats geschossen?</span
+            >
+          </label>
+        </div>
+      </div>
+    </form>
+    <h2>Ausgabebereich</h2>
+    <div class="p-2 shadow-lg bg-gray-200 text-gray-900">
+      <div v-for="(item, key, index) in form" :key="index">
+        {{ key }}: {{ item }}
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Klaus",
+        lastName: "Fischer",
+        hobbies: "Fußball, Tor des Monats",
+        color: "blue",
+        favoriteClubs: ["FC Schalke 04"],
+        goalOfTheMonth: false,
+      },
+    };
+  },
+};
+</script>
 
 ```
 
@@ -1288,6 +1715,169 @@ export default {
 #### App.vue
 
 ```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Form Handling
+    </h1>
+    <h2>Eingabebereich</h2>
+    <form>
+      <div class="flex flex-wrap items-center justify-between -mx-4">
+        <div class="form-control w-1/2 px-4">
+          <label class="label" for="firstName">
+            <span class="label-text">Vorname</span>
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            v-model="form.firstName"
+            placeholder="Vorname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="form-control w-1/2 px-4">
+          <label class="label" vor="lastName">
+            <span class="label-text">Nachname</span>
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            v-model="form.lastName"
+            placeholder="Nachname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="hobbies">
+            <span class="label-text">Hobbys</span>
+          </label>
+          <textarea
+            id="hobbies"
+            v-model="form.hobbies"
+            placeholder="Deine Hobbys"
+            class="textarea h-24 textarea textarea-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="color">
+            <span class="label-text">Lieblingsfarbe</span>
+          </label>
+          <select
+            id="color"
+            class="select select-bordered w-full"
+            v-model="form.color"
+          >
+            <option value="">Wähle Deine Lieblingsfarbe</option>
+            <option value="blue">blau</option>
+            <option value="red">rot</option>
+            <option value="green">grün</option>
+          </select>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="favoriteClubs">
+            <span class="label-text">Lieblingsvereine</span>
+          </label>
+          <select
+            id="favoriteClubs"
+            class="select select-bordered w-full h-36"
+            v-model="form.favoriteClubs"
+            multiple
+          >
+            <option value="FC Schalke 04">FC Schalke 04</option>
+            <option value="Borussia Dortmund">Borussia Dortmund</option>
+            <option value="MSV Duisburg">MSV Duisburg</option>
+            <option value="Rot-Weiss Essen">Rot-Weiss Essen</option>
+          </select>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="goal"
+                v-model="form.goalOfTheMonth"
+                class="checkbox"
+              />
+              <span class="checkbox-mark"></span>
+            </div>
+            <span class="label-text" for="goal"
+              >Hast Du schon einmal das Tor des Monats geschossen?</span
+            >
+          </label>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="favoriteClubs">
+            <span class="label-text">Positionen?</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="centre-forward"
+                v-model="form.positions"
+                value="Mittelstürmer"
+                class="checkbox"
+              />
+              <span class="checkbox-mark" for="centre-forward"></span>
+            </div>
+            <span class="label-text">Mittelstürmer</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="left-wing"
+                v-model="form.positions"
+                value="Linksaußen"
+                class="checkbox"
+              />
+              <span class="checkbox-mark" for="left-wing"></span>
+            </div>
+            <span class="label-text">Linksaußen</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="right-wing"
+                v-model="form.positions"
+                value="Rechtsaußen"
+                class="checkbox"
+              />
+              <span class="checkbox-mark" for="right-wing"></span>
+            </div>
+            <span class="label-text">Rechtsaußen</span>
+          </label>
+        </div>
+      </div>
+    </form>
+    <h2>Ausgabebereich</h2>
+    <div class="p-2 shadow-lg bg-gray-200 text-gray-900">
+      <div v-for="(item, key, index) in form" :key="index">
+        {{ key }}: {{ item }}
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Klaus",
+        lastName: "Fischer",
+        hobbies: "Fußball, Tor des Monats",
+        color: "blue",
+        favoriteClubs: ["FC Schalke 04"],
+        goalOfTheMonth: false,
+        positions: [],
+      },
+    };
+  },
+};
+</script>
 
 ```
 
@@ -1296,6 +1886,214 @@ export default {
 #### App.vue
 
 ```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Form Handling
+    </h1>
+    <h2>Eingabebereich</h2>
+    <form>
+      <div class="flex flex-wrap items-center justify-between -mx-4">
+        <div class="form-control w-1/2 px-4">
+          <label class="label" for="firstName">
+            <span class="label-text">Vorname</span>
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            v-model="form.firstName"
+            placeholder="Vorname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="form-control w-1/2 px-4">
+          <label class="label" vor="lastName">
+            <span class="label-text">Nachname</span>
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            v-model="form.lastName"
+            placeholder="Nachname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="hobbies">
+            <span class="label-text">Hobbys</span>
+          </label>
+          <textarea
+            id="hobbies"
+            v-model="form.hobbies"
+            placeholder="Deine Hobbys"
+            class="textarea h-24 textarea textarea-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="color">
+            <span class="label-text">Lieblingsfarbe</span>
+          </label>
+          <select
+            id="color"
+            class="select select-bordered w-full"
+            v-model="form.color"
+          >
+            <option value="">Wähle Deine Lieblingsfarbe</option>
+            <option value="blue">blau</option>
+            <option value="red">rot</option>
+            <option value="green">grün</option>
+          </select>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="favoriteClubs">
+            <span class="label-text">Lieblingsvereine</span>
+          </label>
+          <select
+            id="favoriteClubs"
+            class="select select-bordered w-full h-36"
+            v-model="form.favoriteClubs"
+            multiple
+          >
+            <option value="FC Schalke 04">FC Schalke 04</option>
+            <option value="Borussia Dortmund">Borussia Dortmund</option>
+            <option value="MSV Duisburg">MSV Duisburg</option>
+            <option value="Rot-Weiss Essen">Rot-Weiss Essen</option>
+          </select>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="goal"
+                v-model="form.goalOfTheMonth"
+                class="checkbox"
+              />
+              <span class="checkbox-mark"></span>
+            </div>
+            <span class="label-text" for="goal"
+              >Hast Du schon einmal das Tor des Monats geschossen?</span
+            >
+          </label>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="favoriteClubs">
+            <span class="label-text">Positionen?</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="centre-forward"
+                v-model="form.positions"
+                value="Mittelstürmer"
+                class="checkbox"
+              />
+              <span class="checkbox-mark" for="centre-forward"></span>
+            </div>
+            <span class="label-text">Mittelstürmer</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="left-wing"
+                v-model="form.positions"
+                value="Linksaußen"
+                class="checkbox"
+              />
+              <span class="checkbox-mark" for="left-wing"></span>
+            </div>
+            <span class="label-text">Linksaußen</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="right-wing"
+                v-model="form.positions"
+                value="Rechtsaußen"
+                class="checkbox"
+              />
+              <span class="checkbox-mark" for="right-wing"></span>
+            </div>
+            <span class="label-text">Rechtsaußen</span>
+          </label>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="favoriteClubs">
+            <span class="label-text">restliche Vertragslaufzeit?</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="radio"
+                id="years1-2"
+                v-model="form.yearsRemaining"
+                value="1 bis 2 Jahre"
+                class="radio"
+              />
+              <span class="radio-mark" for="years1-2"></span>
+            </div>
+            <span class="label-text">1 bis 2 Jahre</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="radio"
+                id="years3-4"
+                v-model="form.yearsRemaining"
+                value="3 bis 4 Jahre"
+                class="radio"
+              />
+              <span class="radio-mark" for="years3-4"></span>
+            </div>
+            <span class="label-text">3 bis 4 Jahre</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="radio"
+                id="years5"
+                v-model="form.yearsRemaining"
+                value="mehr als 4 Jahre"
+                class="radio"
+              />
+              <span class="radio-mark" for="year5"></span>
+            </div>
+            <span class="label-text">mehr als 4 Jahre</span>
+          </label>
+        </div>
+      </div>
+    </form>
+    <h2>Ausgabebereich</h2>
+    <div class="p-2 shadow-lg bg-gray-200 text-gray-900">
+      <div v-for="(item, key, index) in form" :key="index">
+        {{ key }}: {{ item }}
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Klaus",
+        lastName: "Fischer",
+        hobbies: "Fußball, Tor des Monats",
+        color: "blue",
+        favoriteClubs: ["FC Schalke 04"],
+        goalOfTheMonth: false,
+        positions: [],
+        yearsRemaining: "",
+      },
+    };
+  },
+};
+</script>
 
 ```
 
@@ -1304,71 +2102,1095 @@ export default {
 #### App.vue
 
 ```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Form Handling
+    </h1>
+    <h2>Eingabebereich</h2>
+    <form v-on:submit="submitForm">
+      <div class="flex flex-wrap items-center justify-between -mx-4">
+        <div class="form-control w-1/2 px-4">
+          <label class="label" for="firstName">
+            <span class="label-text">Vorname</span>
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            v-model="form.firstName"
+            placeholder="Vorname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="form-control w-1/2 px-4">
+          <label class="label" vor="lastName">
+            <span class="label-text">Nachname</span>
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            v-model="form.lastName"
+            placeholder="Nachname"
+            class="input input-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="hobbies">
+            <span class="label-text">Hobbys</span>
+          </label>
+          <textarea
+            id="hobbies"
+            v-model="form.hobbies"
+            placeholder="Deine Hobbys"
+            class="textarea h-24 textarea textarea-bordered"
+          />
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="color">
+            <span class="label-text">Lieblingsfarbe</span>
+          </label>
+          <select
+            id="color"
+            class="select select-bordered w-full"
+            v-model="form.color"
+          >
+            <option value="">Wähle Deine Lieblingsfarbe</option>
+            <option value="blue">blau</option>
+            <option value="red">rot</option>
+            <option value="green">grün</option>
+          </select>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="favoriteClubs">
+            <span class="label-text">Lieblingsvereine</span>
+          </label>
+          <select
+            id="favoriteClubs"
+            class="select select-bordered w-full h-36"
+            v-model="form.favoriteClubs"
+            multiple
+          >
+            <option value="FC Schalke 04">FC Schalke 04</option>
+            <option value="Borussia Dortmund">Borussia Dortmund</option>
+            <option value="MSV Duisburg">MSV Duisburg</option>
+            <option value="Rot-Weiss Essen">Rot-Weiss Essen</option>
+          </select>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="goal"
+                v-model="form.goalOfTheMonth"
+                class="checkbox"
+              />
+              <span class="checkbox-mark"></span>
+            </div>
+            <span class="label-text" for="goal"
+              >Hast Du schon einmal das Tor des Monats geschossen?</span
+            >
+          </label>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="favoriteClubs">
+            <span class="label-text">Positionen?</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="centre-forward"
+                v-model="form.positions"
+                value="Mittelstürmer"
+                class="checkbox"
+              />
+              <span class="checkbox-mark" for="centre-forward"></span>
+            </div>
+            <span class="label-text">Mittelstürmer</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="left-wing"
+                v-model="form.positions"
+                value="Linksaußen"
+                class="checkbox"
+              />
+              <span class="checkbox-mark" for="left-wing"></span>
+            </div>
+            <span class="label-text">Linksaußen</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="checkbox"
+                id="right-wing"
+                v-model="form.positions"
+                value="Rechtsaußen"
+                class="checkbox"
+              />
+              <span class="checkbox-mark" for="right-wing"></span>
+            </div>
+            <span class="label-text">Rechtsaußen</span>
+          </label>
+        </div>
+        <div class="mt-4 form-control w-full px-4">
+          <label class="label" for="favoriteClubs">
+            <span class="label-text">restliche Vertragslaufzeit?</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="radio"
+                id="years1-2"
+                v-model="form.yearsRemaining"
+                value="1 bis 2 Jahre"
+                class="radio"
+              />
+              <span class="radio-mark" for="years1-2"></span>
+            </div>
+            <span class="label-text">1 bis 2 Jahre</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="radio"
+                id="years3-4"
+                v-model="form.yearsRemaining"
+                value="3 bis 4 Jahre"
+                class="radio"
+              />
+              <span class="radio-mark" for="years3-4"></span>
+            </div>
+            <span class="label-text">3 bis 4 Jahre</span>
+          </label>
+          <label class="cursor-pointer label justify-start">
+            <div class="mr-2">
+              <input
+                type="radio"
+                id="years5"
+                v-model="form.yearsRemaining"
+                value="mehr als 4 Jahre"
+                class="radio"
+              />
+              <span class="radio-mark" for="year5"></span>
+            </div>
+            <span class="label-text">mehr als 4 Jahre</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-sm btn-primary">Daten übermitteln</button>
+      </div>
+    </form>
+    <h2>Ausgabebereich</h2>
+    <div class="p-2 shadow-lg bg-gray-200 text-gray-900">
+      <div v-for="(item, key, index) in form" :key="index">
+        {{ key }}: {{ item }}
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Klaus",
+        lastName: "Fischer",
+        hobbies: "Fußball, Tor des Monats",
+        color: "blue",
+        favoriteClubs: ["FC Schalke 04"],
+        goalOfTheMonth: false,
+        positions: [],
+        yearsRemaining: "",
+      },
+    };
+  },
+  //
+  methods: {
+    submitForm(event) {
+      event.preventDefault();
+      console.log("Form data: ", this.form);
+    },
+  },
+};
+</script>
 
 ```
 
-## X
+## Modifiers
 
-### x. Beispiel
+### 1. Beispiel
+
+```js
+<input
+  type="text"
+  id="firstName"
+  v-model.trim="form.firstName"
+  placeholder="Vorname"
+  class="input input-bordered"
+/>
+```
+
+### 2. Beispiel
 
 #### App.vue
 
 ```js
-
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Modifiers
+    </h1>
+    <h2>Eingabebereich</h2>
+    <form v-on:submit="submitForm">
+      <div class="p-2 flex flex-wrap items-center justify-between -mx-2">
+        <div class="form-control w-1/2 px-2">
+          <label class="label" for="age">
+            <span class="label-text">Alter in Jahren</span>
+          </label>
+          <input
+            type="text"
+            id="age"
+            v-model.number="form.age"
+            class="input input-bordered"
+          />
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-sm btn-primary">Daten übermitteln</button>
+      </div>
+    </form>
+    <h2>Ausgabebereich</h2>
+    <div class="p-2 shadow-lg bg-gray-200 text-gray-900">
+      <div v-for="(item, key, index) in form" :key="index">
+        {{ key }}: {{ item }}
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        age: null,
+      },
+    };
+  },
+  //
+  methods: {
+    submitForm(event) {
+      event.preventDefault();
+      console.log('Form data: ', this.form);
+    }
+  }
+};
+</script>
 ```
 
-### x. Beispiel
+### 3. Beispiel
 
 #### App.vue
 
 ```js
-
+<input
+  type="text"
+  id="age"
+  v-model.number.lazy="form.age"
+  class="input input-bordered"
+/>
 ```
 
-### x. Beispiel
+### 4. Beispiel
 
 #### App.vue
 
 ```js
-
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Modifiers
+    </h1>
+    <h2>Eingabebereich</h2>
+    <form v-on:submit.prevent="submitForm">
+      <div class="p-2 flex flex-wrap items-center justify-between -mx-2">
+        <div class="form-control w-1/2 px-2">
+          <label class="label" for="age">
+            <span class="label-text">Alter in Jahren</span>
+          </label>
+          <input
+            type="text"
+            id="age"
+            v-model.number.lazy="form.age"
+            class="input input-bordered"
+          />
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-sm btn-primary">Daten übermitteln</button>
+      </div>
+    </form>
+    <h2>Ausgabebereich</h2>
+    <div class="p-2 shadow-lg bg-gray-200 text-gray-900">
+      <div v-for="(item, key, index) in form" :key="index">
+        {{ key }}: {{ item }}
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        age: null,
+      },
+    };
+  },
+  //
+  methods: {
+    submitForm() {
+      console.log('Form data: ', this.form);
+    }
+  }
+};
+</script>
 ```
 
-### x. Beispiel
+## More directives
+
+### 1. Beispiel
 
 #### App.vue
 
 ```js
-
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      v-once
+    </h1>
+    <div v-once>
+      <input
+        type="text"
+        id="firstName"
+        v-model="form.firstName"
+        class="input input-bordered"
+      />
+    </div>
+    <button v-on:click="form.firstName = 'Annalena'"
+      class="mt-8 btn btn-sm btn-primary">
+      Namen ändern
+    </button>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Angela",
+      },
+    };
+  },
+};
+</script>
 ```
 
-### x. Beispiel
+### 2. Beispiel
 
 #### App.vue
 
 ```js
-
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      v-pre
+    </h1>
+    <div v-pre>
+      {{ form.firstName }}
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Angela",
+      },
+    };
+  },
+};
+</script>
 ```
 
-### x. Beispiel
+## Computed Properties
+
+### 1. Beispiel
 
 #### App.vue
 
 ```js
-
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Computed Properties
+    </h1>
+    <h4>Name: {{ form.firstName }} {{ form.lastName }}</h4>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Angela",
+        lastName: "Merkel"
+      },
+    };
+  },
+};
+</script>
 ```
 
-### x. Beispiel
+### 2. Beispiel
 
 #### App.vue
 
 ```js
-
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Computed Properties
+    </h1>
+    <h4>Name: {{ form.firstName }} {{ form.lastName }}</h4>
+    <h4>Name mit Computed Property: {{ fullName }}</h4>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      form: {
+        firstName: "Angela",
+        lastName: "Merkel",
+      },
+    };
+  },
+  //
+  computed: {
+    fullName() {
+      return `${this.form.firstName} ${this.form.lastName}`;
+    },
+  },
+};
+</script>
 ```
 
-### x. Beispiel
+### 3. Beispiel
 
 #### App.vue
 
 ```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Computed Properties
+    </h1>
+    <h4>
+      Bundeligaspiele Summe:
+      {{ sumNumberOfMatches }}
+    </h4>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      players: [
+        {
+          id: 1,
+          firstName: "Klaus",
+          lastName: "Fischer",
+          club: "FC Schalke 04",
+          numberOfMatches: 535,
+        },
+        {
+          id: 2,
+          firstName: "Norbert",
+          lastName: "Nigbur",
+          club: "FC Schalke 04",
+          numberOfMatches: 456,
+        },
+        {
+          id: 3,
+          firstName: "Klaus",
+          lastName: "Fichtel",
+          club: "FC Schalke 04",
+          numberOfMatches: 552,
+        },
+      ],
+    };
+  },
+  //
+  computed: {
+    sumNumberOfMatches() {
+     return this.players.reduce((total, current) => (total = total + current.numberOfMatches), 0) ;
+    }
+  },
+};
+</script>
+```
+
+### 4. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Computed Properties
+    </h1>
+    <div>
+      <button v-on:click="players.push({id: 4, firstName: 'Hannes', lastName: 'Bongartz', numberOfMatches: 189})" class="btn btn-sm btn-primary">Mit Hannes</button>
+    </div>
+    <h4>
+      Bundeligaspiele Summe:
+      {{ sumNumberOfMatches }}
+    </h4>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      players: [
+        {
+          id: 1,
+          firstName: "Klaus",
+          lastName: "Fischer",
+          club: "FC Schalke 04",
+          numberOfMatches: 535,
+        },
+        {
+          id: 2,
+          firstName: "Norbert",
+          lastName: "Nigbur",
+          club: "FC Schalke 04",
+          numberOfMatches: 456,
+        },
+        {
+          id: 3,
+          firstName: "Klaus",
+          lastName: "Fichtel",
+          club: "FC Schalke 04",
+          numberOfMatches: 552,
+        },
+      ],
+    };
+  },
+  //
+  computed: {
+    sumNumberOfMatches() {
+     return this.players.reduce((total, current) => (total = total + current.numberOfMatches), 0) ;
+    }
+  },
+};
+</script>
+```
+
+### 5. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Computed Properties
+    </h1>
+    <div>
+      <button v-on:click="players.push({id: 4, firstName: 'Hannes', lastName: 'Bongartz', numberOfMatches: 189})" class="btn btn-sm btn-primary">Mit Hannes</button>
+    </div>
+    <h4>
+      Bundeligaspiele Summe (computed):
+      {{ sumNumberOfMatches }}
+    </h4>
+    <h4>
+      Bundeligaspiele Summe (methods):
+      {{ getSumNumberOfMatches() }}
+    </h4>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      players: [
+        {
+          id: 1,
+          firstName: "Klaus",
+          lastName: "Fischer",
+          club: "FC Schalke 04",
+          numberOfMatches: 535,
+        },
+        {
+          id: 2,
+          firstName: "Norbert",
+          lastName: "Nigbur",
+          club: "FC Schalke 04",
+          numberOfMatches: 456,
+        },
+        {
+          id: 3,
+          firstName: "Klaus",
+          lastName: "Fichtel",
+          club: "FC Schalke 04",
+          numberOfMatches: 552,
+        },
+      ],
+    };
+  },
+  methods: {
+    getSumNumberOfMatches() {
+     return this.players.reduce((total, current) => (total = total + current.numberOfMatches), 0) ; 
+    }
+  },
+  //
+  computed: {
+    sumNumberOfMatches() {
+     return this.players.reduce((total, current) => (total = total + current.numberOfMatches), 0) ;
+    }
+  },
+};
+</script>
+```
+
+### 6. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Computed Properties
+    </h1>
+    <div>
+      <button
+        v-on:click="
+          players.push({
+            id: 4,
+            firstName: 'Hannes',
+            lastName: 'Bongartz',
+            numberOfMatches: 189,
+          })
+        "
+        class="btn btn-sm btn-primary"
+      >
+        Mit Hannes
+      </button>
+    </div>
+    <h4>
+      Bundeligaspiele Summe (computed):
+      {{ sumNumberOfMatches }}
+    </h4>
+    <h4>
+      Bundeligaspiele Summe (methods):
+      {{ getSumNumberOfMatches() }}
+    </h4>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text" for="color">Farbe</span>
+      </label>
+      <input
+        type="text"
+        id="color"
+        v-model="color"
+        class="input input-bordered"
+      />
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      color: "",
+      players: [
+        {
+          id: 1,
+          firstName: "Klaus",
+          lastName: "Fischer",
+          club: "FC Schalke 04",
+          numberOfMatches: 535,
+        },
+        {
+          id: 2,
+          firstName: "Norbert",
+          lastName: "Nigbur",
+          club: "FC Schalke 04",
+          numberOfMatches: 456,
+        },
+        {
+          id: 3,
+          firstName: "Klaus",
+          lastName: "Fichtel",
+          club: "FC Schalke 04",
+          numberOfMatches: 552,
+        },
+      ],
+    };
+  },
+  //
+  methods: {
+    getSumNumberOfMatches() {
+      console.log("methods getSumNumberOfMatches");
+      return this.players.reduce(
+        (total, current) => (total = total + current.numberOfMatches),
+        0
+      );
+    },
+  },
+  //
+  computed: {
+    sumNumberOfMatches() {
+      console.log("computed sumNumberOfMatches");
+      return this.players.reduce(
+        (total, current) => (total = total + current.numberOfMatches),
+        0
+      );
+    },
+  },
+};
+</script>
+```
+
+### 7. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Computed Properties + Conditional List Rendering
+    </h1>
+    <template v-for="player in players" :key="player.id">
+      <div v-if="player.numberOfMatches > 500">
+        {{ player.firstName }} {{ player.lastName }} ({{ player.club }}) hat
+        insgesamt {{ player.numberOfMatches }} Bundesligaspiele absolivert.
+      </div>
+    </template>
+    <hr />
+    <div v-for="player in experiencedPlayers" :key="player.id">
+      {{ player.firstName }} {{ player.lastName }} ({{ player.club }}) hat
+      insgesamt {{ player.numberOfMatches }} Bundesligaspiele absolivert.
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      players: [
+        {
+          id: 1,
+          firstName: "Klaus",
+          lastName: "Fischer",
+          club: "FC Schalke 04",
+          numberOfMatches: 535,
+        },
+        {
+          id: 2,
+          firstName: "Norbert",
+          lastName: "Nigbur",
+          club: "FC Schalke 04",
+          numberOfMatches: 456,
+        },
+        {
+          id: 3,
+          firstName: "Klaus",
+          lastName: "Fichtel",
+          club: "FC Schalke 04",
+          numberOfMatches: 552,
+        },
+      ],
+    };
+  },
+  //
+  computed: {
+    experiencedPlayers() {
+      return this.players.filter((player) => player.numberOfMatches > 500);
+    },
+  },
+  //
+};
+</script>
+```
+
+### 8. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Computed Properties
+    </h1>
+    <h4>Name: {{ firstName }} {{ lastName }}</h4>
+    <h4>Name mit Computed Property: {{ fullName }}</h4>
+    <div>
+      <button class="btb btn-sm btn-warning" v-on:click="changeFullName">
+        Neuer Name
+      </button>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      firstName: "Angela",
+      lastName: "Merkel",
+    };
+  },
+  //
+  methods: {
+    changeFullName() {
+      this.fullName = "Annalena Baerbock";
+    },
+  },
+  //
+  computed: {
+    fullName: {
+      get() {
+        return `${this.firstName} ${this.lastName}`;
+      },
+      set(value) {
+        const names = value.split(" ");
+        this.firstName = names[0];
+        this.lastName = names[1];
+      },
+    },
+  },
+};
+</script>
+```
+
+## Watchers
+
+### 1. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center">
+      <h1>
+        Watchers
+      </h1>
+      <h2>Lautstärke</h2>
+    </div>
+    <h3>
+      <progress
+        class="progress progress-primary"
+        v-bind:value="volume"
+        max="5"
+      ></progress>
+    </h3>
+    <h4 class="text-center">{{ volume }}</h4>
+    <div class="mt-4 btn-group justify-center">
+      <button class="btn btn-sm btn-warning" v-on:click="volume -= 1">-</button>
+      <button class="btn btn-sm btn-success" v-on:click="volume += 1">+</button>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      volume: 0,
+    };
+  },
+  //
+  watch: {
+    volume(newVolume, oldVolume) {
+      if (newVolume > oldVolume && oldVolume === 4) {
+        alert("Achtung: diese Lautstärke gefährdet ihre Gesundheit");
+      }
+      //
+      if (newVolume < 0) {
+        this.volume = 0;
+      }
+      //
+      if (newVolume > 5) {
+        this.volume = 5;
+      }
+    },
+  },
+};
+</script>
 
 ```
+
+## Immediate and Deep Watchers
+
+### 1. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center">
+      <h1>
+        Watchers
+      </h1>
+      <h2>Immediate and Deep</h2>
+    </div>
+    <div class="form-control">
+      <label class="label" for="firstName">
+        <span class="label-text">Radiosender:</span>
+      </label>
+      <input type="text" v-model="radiosender" class="input input-bordered" />
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      radiosender: "Eins LIVE",
+    };
+  },
+  //
+  watch: {
+    radiosender: {
+      handler(newSender) {
+        console.log(`Aufruf der API mit dem neuen Radiosender: ${newSender}`);
+      },
+      immediate: true,
+    },
+  },
+};
+</script>
+
+```
+
+### 2. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center">
+      <h1>
+        Watchers
+      </h1>
+      <h2>Immediate and Deep</h2>
+    </div>
+    <div class="form-control">
+      <label class="label" for="firstName">
+        <span class="label-text">Radiosender:</span>
+      </label>
+      <input type="text" v-model="radiosender" class="input input-bordered" />
+    </div>
+    <div class="form-control">
+      <label class="label" for="senderInfo.web">
+        <span class="label-text">Webadresse:</span>
+      </label>
+      <input
+        type="text"
+        v-model="senderInfo.web"
+        class="input input-bordered"
+      />
+    </div>
+    <div class="form-control">
+      <label class="label" for="senderInfo.foundedOn">
+        <span class="label-text">gegründet am:</span>
+      </label>
+      <input
+        type="text"
+        v-model.number="senderInfo.foundedOn"
+        class="input input-bordered"
+      />
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      radiosender: "Eins LIVE",
+      senderInfo: {
+        web: "https://www1.wdr.de/radio/1live/index.html",
+        foundedOn: 1995,
+      },
+    };
+  },
+  //
+  watch: {
+    radiosender: {
+      handler(newSender) {
+        console.log(`Aufruf der API mit dem neuen Radiosender: ${newSender}`);
+      },
+      immediate: true,
+    },
+    senderInfo: {
+      handler(newInfos) {
+        console.log(
+          `Aufruf der API mit web "${newInfos.web}" und gegründet am "${newInfos.foundedOn}". `
+        );
+      },
+      deep: true,
+    },
+  },
+};
+</script>
+
+```
+
+## Summary
+
+<img src="images/02_Single_file_component.png" alt="Summary Single File Component" width="100%"/>
