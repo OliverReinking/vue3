@@ -99,7 +99,32 @@ export default {
 #### App.vue (Parent)
 
 ```js
-
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center">
+      <h1>
+        Our first child
+      </h1>
+      <Willkommen v-bind:firstName="userName" />
+    </div>
+  </div>
+</template>
+<script>
+import Willkommen from './components/WillkommenProp.vue';
+export default {
+  name: "App",
+  //
+  components: {
+    Willkommen
+  },
+  //
+  data() {
+    return {
+      userName: 'Annalena'
+    }
+  }
+};
+</script>
 ```
 #### WillkommenProp.vue (Child)
 
