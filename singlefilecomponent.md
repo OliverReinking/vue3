@@ -768,7 +768,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 ### 4. Beispiel
@@ -851,7 +850,39 @@ export default {
 #### App.vue
 
 ```js
-
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Lists and Keys
+    </h1>
+    <div v-for="name in names">
+      <h5>{{ name }}</h5>
+      <input placeholder="Nachname" />
+    </div>
+    <button class="mt-6 btn btn-primary" v-on:click="changeOrder">
+      Liste neu sortieren
+    </button>
+  </div>
+</template>
+<script>
+import _ from "lodash";
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      names: ["Angela", "Armin", "Annalena", "Olaf"],
+    };
+  },
+  //
+  methods: {
+    changeOrder() {
+      console.log(this.names);
+      this.names = _.shuffle(this.names);
+    },
+  },
+};
+</script>
 ```
 
 ## Conditional List Rendering
@@ -1380,7 +1411,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 ### 3. Beispiel
@@ -1472,7 +1502,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 ### 4. Beispiel
@@ -1581,7 +1610,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 ### 5. Beispiel
@@ -1707,7 +1735,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 ### 6. Beispiel
@@ -1878,7 +1905,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 ### 7. Beispiel
@@ -2094,7 +2120,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 ### 8. Beispiel
@@ -2320,7 +2345,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 ## Modifiers
@@ -3066,7 +3090,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 ## Immediate and Deep Watchers
@@ -3112,7 +3135,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 ### 2. Beispiel
@@ -3188,7 +3210,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 ## Summary
