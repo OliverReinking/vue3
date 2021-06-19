@@ -9,4 +9,3 @@
 
 ## [Input components](input_components.md)
 
-## [CSS](css.md)
