@@ -2972,7 +2972,7 @@ export default {
 </script>
 ```
 
-#### counter.js
+#### counter.js (src/mixins)
 
 ```js
 export default {

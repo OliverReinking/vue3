@@ -823,7 +823,6 @@ export default {
   }
 };
 </script>
-
 ```
 
 #### ComputedAPIRef.vue (Child)
@@ -1035,7 +1034,6 @@ export default {
   },
 };
 </script>
-
 ```
 
 #### WatchAPIRef.vue (Child)
@@ -1365,7 +1363,6 @@ export default {
 </script>
 ```
 
-
 #### WatchAPIReactiveV4.vue (Child)
 Um diese Variante von WatchAPIReactive zu verwenden, ersetze in der App.vue  
 
@@ -1545,34 +1542,1143 @@ export default {
 </script>
 ```
 
+## Provide & Inject
 
-
-
-
-## 
-
-### x. Beispiel
+### 1. Beispiel
 
 #### App.vue (Parent)
 
 ```js
-
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center mb-4">
+      <h1>
+        Provide & Inject (Composition API)
+      </h1>
+      <div class="mt-8">
+        <h4>Alte Schreibweise</h4>
+        <ProvideInject />
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import ProvideInject from "./components/api/ProvideInject";
+export default {
+  name: "App",
+  //
+  components: {
+    ProvideInject,
+  },
+};
+</script>
 ```
 
-#### X.vue (Child)
+#### ProvideInject.vue (Child)
 
 ```js
-
+<template>
+  <h3>ProvideInject: {{ framework }}</h3>
+  <ChildA />
+</template>
+<script>
+import ChildA from "./ChildA.vue";
+export default {
+  //
+  name: "ProvideInject",
+  //
+  components: {
+    ChildA,
+  },
+  //
+  data() {
+    return {
+      framework: "Vue 3",
+    };
+  },
+  provide() {
+    return {
+      frameworkName: this.framework,
+    };
+  },
+};
+</script>
 ```
 
-#### X.vue (Child)
+#### ChildA.vue (Child)
 
 ```js
-
+<template>
+  <h4>Child A</h4>
+  <ChildB />
+</template>
+<script>
+import ChildB from './ChildB'
+export default {
+  name: "ChildA",
+  //
+  components: {
+      ChildB
+  }
+};
+</script>
 ```
 
-#### X.vue (Child)
+#### ChildB.vue (Child)
 
 ```js
+<template>
+  <h4>Child B</h4>
+  <ChildC />
+</template>
+<script>
+import ChildC from './ChildC'
+export default {
+  name: "ChildB",
+  //
+  components: {
+      ChildC
+  }
+};
+</script>
+```
 
+#### ChildC.vue (Child)
+
+```js
+<template>
+  <h4>Child C</h4>
+  <div>Name of the framework: {{ frameworkName }}</div>
+</template>
+<script>
+export default {
+  name: "ChildC",
+  //
+  inject: ['frameworkName']
+};
+</script>
+```
+
+### 2. Beispiel
+
+#### App.vue (Parent)
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center mb-4">
+      <h1>
+        Provide & Inject (Composition API)
+      </h1>
+      <div class="mt-8">
+        <h4>Neue Schreibweise</h4>
+        <ProvideInjectAPI />
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import ProvideInjectAPI from "./components/api/ProvideInjectAPI";
+export default {
+  name: "App",
+  //
+  components: {
+    ProvideInjectAPI,
+  },
+};
+</script>
+```
+
+#### ProvideInjectAPI.vue (Child)
+
+```js
+<template>
+  <h3>ProvideInjectAPI</h3>
+  <ChildA />
+</template>
+<script>
+import { provide } from 'vue'
+import ChildA from "./ChildAAPI.vue";
+export default {
+  //
+  name: "ProvideInjectAPI",
+  //
+  components: {
+    ChildA,
+  },
+  //  
+  setup() {
+    provide('frameworkNameAPI', 'Vue 3')
+  },
+};
+</script>
+```
+
+#### ChildAAPI.vue (Child)
+
+```js
+<template>
+  <h4>Child A</h4>
+  <ChildB />
+</template>
+<script>
+import ChildB from './ChildBAPI'
+export default {
+  name: "ChildAAPI",
+  //
+  components: {
+      ChildB
+  }
+};
+</script>
+```
+
+#### ChildBAPI.vue (Child)
+
+```js
+<template>
+  <h4>Child B</h4>
+  <ChildC />
+</template>
+<script>
+import ChildC from './ChildCAPI'
+export default {
+  name: "ChildBAPI",
+  //
+  components: {
+      ChildC
+  }
+};
+</script>
+```
+
+#### ChildCAPI.vue (Child)
+
+```js
+<template>
+  <h4>Child C</h4>
+  <div>Name of the framework: {{ frameworkNameAPI }}</div>
+</template>
+<script>
+import { inject } from "vue";
+export default {
+  name: "ChildCAPI",
+  //
+  setup() {
+    const frameworkNameAPI = inject("frameworkNameAPI", "Default framework");
+    //
+    return {
+      frameworkNameAPI,
+    };
+  },
+};
+</script>
+```
+
+### 3. Beispiel
+
+#### App.vue (Parent)
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center mb-4">
+      <h1>
+        Provide & Inject (Composition API)
+      </h1>
+      <div class="mt-8">
+        <h4>Neue Schreibweise</h4>
+        <ProvideInjectAPI />
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import ProvideInjectAPI from "./components/api/ProvideInjectAPIV2";
+export default {
+  name: "App",
+  //
+  components: {
+    ProvideInjectAPI,
+  },
+};
+</script>
+```
+
+#### ProvideInjectAPIV2.vue (Child)
+
+```js
+<template>
+  <h3>ProvideInjectAPI</h3>
+  <p>Spieler: {{ firstName }} {{ lastName }}</p>
+  <p>erzielte Bundesligatore: {{ goals }}</p>
+  <ChildA />
+</template>
+<script>
+import { provide, ref, reactive, toRefs } from 'vue'
+import ChildA from "./ChildAAPIV2.vue";
+export default {
+  //
+  name: "ProvideInjectAPIV2",
+  //
+  components: {
+    ChildA,
+  },
+  //  
+  setup() {
+    const goals = ref(329)
+    const state = reactive({
+      firstName: 'Gerd',
+      lastName: 'Müller'
+    })
+    //
+    provide('c_goals', goals)
+    provide('c_player', state)
+    //
+    return {
+      goals,
+      ...toRefs(state)
+    }
+  },
+};
+</script>
+```
+
+#### ChildAAPIV2.vue (Child)
+
+```js
+<template>
+  <h4>Child A</h4>
+  <ChildB />
+</template>
+<script>
+import ChildB from './ChildBAPIV2'
+export default {
+  name: "ChildAAPI",
+  //
+  components: {
+      ChildB
+  }
+};
+</script>
+```
+
+#### ChildBAPIV2.vue (Child)
+
+```js
+<template>
+  <h4>Child B</h4>
+  <ChildC />
+</template>
+<script>
+import ChildC from './ChildCAPIV2'
+export default {
+  name: "ChildBAPI",
+  //
+  components: {
+      ChildC
+  }
+};
+</script>
+```
+
+#### ChildCAPIV2.vue (Child)
+
+```js
+<template>
+  <h4>Child C</h4>
+  <p>Spieler: {{ firstName }} {{ lastName }}</p>
+  <p>erzielte Bundesligatore: {{ childGoals }}</p>
+</template>
+<script>
+import { inject, toRefs } from "vue";
+export default {
+  name: "ChildCAPIV2",
+  //
+  setup() {
+    const childGoals = inject("c_goals", 0);
+    const childPlayer = inject("c_player", {
+      firstName: "Klaus",
+      lastName: "Fischer",
+    });
+    //
+    return {
+      childGoals,
+      ...toRefs(childPlayer),
+    };
+  },
+};
+</script>
+```
+
+## Lifecycle Hooks
+
+### 1. Beispiel
+
+#### App.vue (Parent)
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center mb-4">
+      <h1>
+        Lifecycle Hooks (Composition API)
+      </h1>
+      <div class="mt-8">
+        <h4>Alte Schreibweise</h4>
+        <Lifecycle />
+      </div>
+      <div class="mt-8">
+        <h4>Composition API</h4>
+        <LifecycleAPI />
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import Lifecycle from "./components/api/Lifecycle";
+import LifecycleAPI from "./components/api/LifecycleAPI";
+export default {
+  name: "App",
+  //
+  components: {
+    Lifecycle,
+    LifecycleAPI
+  },
+};
+</script>
+```
+
+#### Lifecycle.vue (Child)
+
+```js
+<template>
+  <div>
+    <h5>Lifecycle Hooks in Lifecycle</h5>
+  </div>
+</template>
+<script>
+
+export default {
+  name: "Lifecycle",
+  //
+  //
+  beforeCreate() {
+    console.log("Lifecycle beforeCreate");
+  },
+  //
+  created() {
+    console.log("Lifecycle created");
+  },
+  //
+  beforeMount() {
+    console.log("Lifecycle beforeMount");
+  },
+  //
+  mounted() {
+    console.log("Lifecycle mounted");
+  },
+  //
+  beforeUpdate() {
+    console.log("Lifecycle beforeUpdate");
+  },
+  //
+  updated() {
+    console.log("Lifecycle updated");
+  },
+  //
+  beforeUnmount() {
+    console.log("Lifecycle beforeUnmount");
+  },
+  //
+  unmounted() {
+    console.log("Lifecycle unmounted");
+  },
+};
+</script>
+```
+
+#### LifecycleAPI.vue (Child)
+
+```js
+<template>
+  <div>
+    <h5>Lifecycle Hooks in LifecycleAPI</h5>
+  </div>
+</template>
+<script>
+import {
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onBeforeUnmount,
+  onUnmounted,
+} from "vue";
+export default {
+  name: "LifecycleAPI",
+  //
+  setup() {
+    console.log("LifecycleAPI setup");
+    onBeforeMount(() => {
+      console.log("LifecycleAPI onBeforeMount");
+    });
+    onMounted(() => {
+      console.log("LifecycleAPI onMounted");
+    });
+    onBeforeUpdate(() => {
+      console.log("LifecycleAPI onBeforeUpdate");
+    });
+    onUpdated(() => {
+      console.log("LifecycleAPI onUpdated");
+    });
+    onBeforeUnmount(() => {
+      console.log("LifecycleAPI onBeforeUnmount");
+    });
+    onUnmounted(() => {
+      console.log("LifecycleAPI onUnmounted");
+    });
+  },
+};
+</script>
+```
+
+##  Template Refs
+
+### 1. Beispiel
+
+#### App.vue (Parent)
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center mb-4">
+      <h1>
+        Template Refs (Composition API)
+      </h1>
+      <div class="mt-8">
+        <h4>Alte Schreibweise</h4>
+        <TemplateRef />
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import TemplateRef from "./components/api/TemplateRef";
+export default {
+  name: "App",
+  //
+  components: {
+    TemplateRef,
+  },
+};
+</script>
+```
+
+#### TemplateRef.vue (Child)
+
+```js
+<template>
+  <div class="form-control px-2">
+    <label class="label" for="firstName">
+      <span class="label-text">Vorname</span>
+    </label>
+    <input
+      type="text"
+      id="firstName"
+      ref="firstName"
+      v-model="firstName"
+      placeholder="Vorname"
+      class="input input-bordered"
+    />
+  </div>
+</template>
+<script>
+export default {
+  name: "TemplateRef",
+  //
+  data() {
+    return {
+      firstName: "Gerd",
+    };
+  },
+  //
+  mounted() {
+    this.$refs.firstName.focus();
+  },
+};
+</script>
+```
+
+### 2. Beispiel
+
+#### App.vue (Parent)
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center mb-4">
+      <h1>
+        Template Refs (Composition API)
+      </h1>
+      <div class="mt-8">
+        <h4>Composition API</h4>
+        <TemplateRefAPI />
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import TemplateRefAPI from "./components/api/TemplateRefAPI";
+export default {
+  name: "App",
+  //
+  components: {
+    TemplateRefAPI,
+  },
+};
+</script>
+```
+
+#### TemplateRefAPI.vue (Child)
+
+```js
+<template>
+  <div class="form-control px-2">
+    <label class="label" for="firstName">
+      <span class="label-text">Vorname</span>
+    </label>
+    <input
+      type="text"
+      id="firstName"
+      ref="refFirstName"
+      v-model="firstName"
+      placeholder="Vorname"
+      class="input input-bordered"
+    />
+  </div>
+</template>
+<script>
+import { onMounted, ref } from "vue";
+export default {
+  name: "TemplateRefAPI",
+  //
+  setup() {
+    const firstName = ref("Gerd");
+    const refFirstName = ref(null);
+    //
+    onMounted(() => {
+      refFirstName.value.focus();
+    });
+    //
+    return {
+      refFirstName,
+      firstName
+    }
+  },
+};
+</script>
+```
+
+## Props
+
+### 1. Beispiel
+
+#### App.vue (Parent)
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center mb-4">
+      <h1>
+        Props (Composition API)
+      </h1>
+      <div class="mt-8">
+        <Player />
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import Player from "./components/api/Player";
+export default {
+  name: "App",
+  //
+  components: {
+    Player,
+  },
+};
+</script>
+```
+
+#### Player.vue (Child)
+
+```js
+<template>
+  <div class="p-2 flex flex-wrap items-center justify-between -mx-2">
+    <div class="form-control w-1/2 px-2">
+      <label class="label" for="firstName">
+        <span class="label-text">Vorname</span>
+      </label>
+      <input
+        type="text"
+        id="firstName"
+        v-model="firstName"
+        placeholder="Vorname"
+        class="input input-bordered"
+      />
+    </div>
+    <div class="form-control w-1/2 px-2">
+      <label class="label" for="lastName">
+        <span class="label-text">Nachname</span>
+      </label>
+      <input
+        type="text"
+        id="lastName"
+        v-model="lastName"
+        placeholder="Nachname"
+        class="input input-bordered"
+      />
+    </div>
+  </div>
+  <h2>Alte Schreibweise</h2>
+  <PlayerName :firstName="firstName" :lastName="lastName" />
+  <h2>Composition API</h2>
+  <PlayerNameAPI :firstName="firstName" :lastName="lastName" />
+</template>
+<script>
+import { ref } from "vue";
+import PlayerName from './PlayerName'
+import PlayerNameAPI from './PlayerNameAPI'
+export default {
+  name: "Player",
+  //
+  components: {
+    PlayerName,
+    PlayerNameAPI
+  },
+  //
+  setup() {
+    const firstName = ref("");
+    const lastName = ref("");
+    //
+    //
+    return {
+      firstName,
+      lastName,
+    };
+  },
+};
+</script>
+```
+
+#### PlayerName.vue (Child)
+
+```js
+<template>
+  <h3>Spielername: {{ firstName }} {{ lastName }}</h3>
+</template>
+<script>
+export default {
+  name: "PlayerName",
+  //
+  props: {
+    firstName: {
+      type: String
+    },
+    lastName: {
+      type: String
+    }
+  },
+  //
+  computed: {
+    fullName() {
+      return `${this.firstName} ${this.lastName}`
+    }
+  }
+};
+</script>
+```
+
+#### PlayerNameAPI.vue (Child)
+
+```js
+<template>
+  <h3>Spielername: {{ firstName }} {{ lastName }}</h3>
+</template>
+<script>
+import { computed } from 'vue'
+export default {
+  name: "PlayerNameAPI",
+  //
+  props: {
+    firstName: {
+      type: String
+    },
+    lastName: {
+      type: String
+    }
+  },
+  //
+  setup(props) {
+    const fullName = computed(() => {
+      return `${props.firstName} ${props.lastName}`
+    })
+    //
+    return {
+      fullName,
+    };
+  },
+};
+</script>
+```
+
+## Custom Component Events
+
+### 1. Beispiel
+
+#### App.vue (Parent)
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center mb-4">
+      <h1>
+        Custom Component Events (Composition API)
+      </h1>
+      <div class="mt-8">
+        <h2>Alte Schreibweise</h2>
+        <EventParent />
+      </div>
+      <div class="mt-8">
+        <h2>Composition API</h2>
+        <EventParentAPI />
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import EventParent from "./components/api/EventParent";
+import EventParentAPI from "./components/api/EventParentAPI";
+export default {
+  name: "App",
+  //
+  components: {
+    EventParent,
+    EventParentAPI
+  },
+};
+</script>
+```
+
+#### EventParent.vue (Child)
+
+```js
+<template>
+  <div>
+    <h3>EventParent</h3>
+    <h4>Vorname: {{ fName }}</h4>
+    <div class="mt-8">
+      <EventChild
+        default-first-name="Uwe"
+        v-on:send-first-name-to-parent="showFirstName"
+      />
+    </div>
+  </div>
+</template>
+<script>
+import EventChild from "./EventChild";
+export default {
+  name: "EventParent",
+  //
+  components: {
+    EventChild,
+  }, //
+  data() {
+    return {
+      fName: "",
+    };
+  },
+  //
+  methods: {
+    showFirstName(name) {
+      this.fName = name;
+    },
+  },
+};
+</script>
+```
+
+#### EventChild.vue (Child)
+
+```js
+<template>
+  <div>
+    <h3>EventChild</h3>
+    <div class="form-control px-2">
+      <label class="label" for="firstName">
+        <span class="label-text">Vorname</span>
+      </label>
+      <input
+        type="text"
+        id="firstName"
+        v-model="firstName"
+        placeholder="Vorname"
+        class="input input-bordered"
+      />
+    </div>
+    <button class="mt-4 btn btn-sm btn-primary" v-on:click="sendFormData">
+      send firstName to parent
+    </button>
+  </div>
+</template>
+<script>
+export default {
+  name: "EventChild",
+  //
+  props: {
+    defaultFirstName: {
+      type: String,
+      default: "Gerd",
+    },
+  },
+  //
+  data() {
+    return {
+      firstName: this.defaultFirstName,
+    };
+  },
+  //
+  emits: ["sendFirstNameToParent"],
+  //
+  methods: {
+    sendFormData() {
+      this.$emit("sendFirstNameToParent", this.firstName);
+    },
+  },
+};
+</script>
+```
+
+#### EventParentAPI.vue (Child)
+
+```js
+<template>
+  <div>
+    <h3>EventParentAPI</h3>
+    <h4>Vorname: {{ fName }}</h4>
+    <div class="mt-8">
+      <EventChild
+        default-first-name="Gerd"
+        v-on:send-first-name-to-parent="showFirstName"
+      />
+    </div>
+  </div>
+</template>
+<script>
+import { ref } from "vue";
+import EventChild from "./EventChildAPI";
+export default {
+  name: "EventParentAPI",
+  //
+  components: {
+    EventChild,
+  },
+  //
+  setup() {
+    const fName = ref("");
+    //
+    function showFirstName(name) {
+      fName.value = name;
+    }
+    //
+    return {
+      fName,
+      showFirstName,
+    };
+  },
+};
+</script>
+```
+
+#### EventChildAPI.vue (Child)
+
+```js
+<template>
+  <div>
+    <h3>EventChildAPI</h3>
+    <div class="form-control px-2">
+      <label class="label" for="firstNameAPI">
+        <span class="label-text">Vorname</span>
+      </label>
+      <input
+        type="text"
+        id="firstNameAPI"
+        v-model="firstName"
+        placeholder="Vorname"
+        class="input input-bordered"
+      />
+    </div>
+    <button class="mt-4 btn btn-sm btn-primary" v-on:click="sendFormData">
+      send firstName to parent
+    </button>
+  </div>
+</template>
+<script>
+import { ref } from "vue";
+export default {
+  name: "EventChildAPI",
+  //
+  props: {
+    defaultFirstName: {
+      type: String,
+      default: "Gerd",
+    },
+  },
+  //
+  emits: ["sendFirstNameToParent"],
+  //
+  setup(props, context) {
+    const firstName = ref(props.defaultFirstName);
+    //
+    function sendFormData() {
+      context.emit("sendFirstNameToParent", firstName.value);
+    }
+    //
+    return {
+      firstName,
+      sendFormData,
+    };
+  },
+};
+</script>
+```
+## Reusability
+
+### 1. Beispiel
+
+#### App.vue (Parent)
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center mb-4">
+      <h1>
+        Reusability with Composition API
+      </h1>
+      <div class="mt-8">
+        <h2>Counter by click</h2>
+        <CounterByClickAPI />
+      </div>
+      <div class="mt-8">
+        <h2>Counter by hover</h2>
+        <CounterByHoverAPI />
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import CounterByClickAPI from "./components/api/CounterByClickAPI";
+import CounterByHoverAPI from "./components/api/CounterByHoverAPI";
+export default {
+  name: "App",
+  //
+  components: {
+    CounterByClickAPI,
+    CounterByHoverAPI
+  },
+};
+</script>
+```
+
+#### useCounter.js (src/composables)
+
+```js
+import { ref } from "vue";
+export default function useCounter() {
+  const count = ref(0);
+  //
+  function addCount() {
+    console.log("useCounter.js incrementCount");
+    count.value += 1;
+  }
+  //
+  return {
+    count,
+    addCount,
+  };
+}
+```
+
+#### CounterByClickAPI.vue (Child)
+
+```js
+<template>
+  <div class="text-center">
+    <button v-on:click="addCount" class="btn btn-sm btn-primary">
+      {{ count }}-mal angeklickt
+    </button>
+  </div>
+</template>
+<script>
+import useCounter from "../../composables/useCounter";
+export default {
+  name: "CounterByClickAPI",
+  //
+  setup() {
+    const { count, addCount } = useCounter();
+    //
+    return {
+      count,
+      addCount,
+    };
+  },
+};
+</script>
+```
+
+#### CounterByHover.vue (Child)
+
+```js
+<template>
+  <div class="text-center">
+    <h2 v-on:mouseover="addCount">{{ count }}-mal mit der Maus überfahren</h2>
+  </div>
+</template>
+<script>
+import useCounter from "../../composables/useCounter";
+export default {
+  name: "CounterByHoverAPI",
+  //
+  setup() {
+    const { count, addCount } = useCounter();
+    //
+    return {
+      count,
+      addCount,
+    };
+  },
+};
+</script>
+```
+
+### 2. Beispiel
+
+#### counter2.js (src/composables)
+
+```js
+import { ref } from "vue";
+export default function useCounter(startCount = 0, stepSize = 5) {
+  const count = ref(startCount);
+  //
+  function addCount() {
+    console.log("useCounter.js incrementCount");
+    count.value += stepSize;
+  }
+  //
+  return {
+    count,
+    addCount,
+  };
+}
 ```
