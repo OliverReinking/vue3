@@ -38,6 +38,33 @@ export default {
     <h1>
       Text Binding
     </h1>
+    <div>Der Autor {{ author }} hat das Buch {{ book }} geschrieben.</div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      author: "Oliver Reinking",
+      book: "Vue 3",
+    };
+  },
+};
+</script>
+```
+
+### 3. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Text Binding
+    </h1>
     <div>
       Der Autor <span v-text="author"></span> hat das Buch
       <span v-text="book"></span> geschrieben.
@@ -87,6 +114,37 @@ export default {
       author: "Reinking",
       book: "Vue 3",
       description: "Eine Einführung in das JavaScript-Framework <b>VUE 3</b>",
+    };
+  },
+};
+</script>
+```
+
+### 2. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      Cross-Side-Scripting
+    </h1>
+    <div>Der Autor {{ author }} hat das Buch {{ book }} geschrieben.</div>
+    <div>Die Beschreibung lautet: <span v-html="description"></span></div>
+    <div v-html="xss"></div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      author: "Reinking",
+      book: "Vue 3",
+      description: "Eine Einführung in das JavaScript-Framework <b>VUE 3</b>",
+      xss: `<a href='#' onclick="alert('Tja, das ist ein Hack, oder?')">Gewinnen Sie jetzt!</a>`,
     };
   },
 };
@@ -166,11 +224,6 @@ export default {
 <script>
 export default {
   name: "App",
-  //
-  data() {
-    return {
-    };
-  },
 };
 </script>
 <style>
@@ -208,10 +261,6 @@ export default {
 .underline {
   text-decoration: underline;
 }
-.danger {
-  background-color: orangered;
-  color: black;
-}
 .success {
   background-color: greenyellow;
   color: green;
@@ -230,7 +279,9 @@ export default {
       Binding Classes
     </h1>
     <h2 class="underline" v-bind:class="status">Status</h2>
-    <h3 v-bind:class="IsEspecially && 'especially'">Ist dies ein besonderer Text?</h3>
+    <h3 v-bind:class="{ especially: IsEspecially }">
+      Ist dies ein besonderer Text?
+    </h3>
   </div>
 </template>
 <script>
@@ -239,8 +290,8 @@ export default {
   //
   data() {
     return {
-      status: 'success',
-      IsEspecially: true
+      status: "success",
+      IsEspecially: true,
     };
   },
 };
@@ -248,14 +299,6 @@ export default {
 <style scoped>
 .underline {
   text-decoration: underline;
-}
-.danger {
-  background-color: orangered;
-  color: black;
-}
-.success {
-  background-color: greenyellow;
-  color: green;
 }
 .especially {
   font-weight: 800;
@@ -275,17 +318,18 @@ export default {
       Binding Classes
     </h1>
     <h2 class="underline" v-bind:class="status">Status</h2>
-    <h3 v-bind:class="IsEspecially ? 'especially' : 'normal' ">Ist dies ein besonderer Text?</h3>
+    <h3 v-bind:class="IsEspecially ? 'especially' : 'normal'">
+      Ist dies ein besonderer Text?
+    </h3>
   </div>
 </template>
 <script>
-
 export default {
   name: "App",
   //
   data() {
     return {
-      status: 'success',
+      status: "success",
       IsEspecially: false,
     };
   },
@@ -294,10 +338,6 @@ export default {
 <style scoped>
 .underline {
   text-decoration: underline;
-}
-.danger {
-  background-color: orangered;
-  color: black;
 }
 .success {
   background-color: greenyellow;
@@ -311,6 +351,7 @@ export default {
   color: blue;
 }
 </style>
+
 ```
 
 ### 5. Beispiel
@@ -352,6 +393,75 @@ export default {
       status: "success",
       IsEspecially: false,
       IsBold: true,
+    };
+  },
+};
+</script>
+<style scoped>
+.underline {
+  text-decoration: underline;
+}
+.danger {
+  background-color: orangered;
+  color: black;
+}
+.success {
+  background-color: greenyellow;
+  color: green;
+}
+.especially {
+  font-weight: 100;
+  font-style: italic;
+}
+.especially_bold {
+  font-weight: 800;
+  color: orange;
+  font-style: italic;
+}
+.only_bold {
+  font-weight: 800;
+}
+.normal {
+  color: blue;
+}
+</style>
+```
+
+### 6. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16">
+    <h1 class="underline">
+      Binding Classes
+    </h1>
+    <h2 class="underline" v-bind:class="status">Status</h2>
+    <h3 v-bind:class="IsEspecially ? 'especially' : 'normal'">
+      Ist dies ein besonderer Text?
+    </h3>
+    <h4
+      v-bind:class="{
+        underline: true,
+        especially_bold: IsEspecially && IsBold,
+        especially: IsEspecially && !IsBold,
+        only_bold: !IsEspecially && IsBold,
+      }"
+    >
+      Ein Objekt mit mehreren Klassen?
+    </h4>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      status: "success",
+      IsEspecially: false,
+      IsBold: false,
     };
   },
 };
@@ -467,7 +577,7 @@ export default {
     <div
       v-bind:style="{
         color: highlightColor,
-        'font-size': divSize + 'px',
+        fontSize: divSize + 'px',
         padding: '20px'
       }"
     >
@@ -499,17 +609,8 @@ export default {
     <h1>
       Binding Styles
     </h1>
-    <div
-      v-bind:style="{
-        color: highlightColor,
-        'font-size': divSize + 'px',
-        padding: '2px',
-      }"
-    >
-      Inline Style
-    </div>
     <div v-bind:style="divStyleObject">
-      Inline Style Version 2
+      Inline Style
     </div>
   </div>
 </template>
@@ -519,8 +620,6 @@ export default {
   //
   data() {
     return {
-      highlightColor: "#4FC08D",
-      divSize: "50",
       divStyleObject: {
         color: "orange",
         fontSize: "50px",
@@ -542,7 +641,6 @@ export default {
     <h1>
       Binding Styles
     </h1>
-    <div v-bind:style="baseStyleObject">nur baseStyleObject</div>
     <div v-bind:style="[baseStyleObject, successStyleObject]">
       baseStyleObject und successStyleObject
     </div>
@@ -821,8 +919,40 @@ export default {
     <h1>
       List Rendering
     </h1>
-    <template v-for="(item, key, index) in listFrameworks" :key="index">
+    <template v-for="(item, key) in listFrameworks" :key="key">
       <h3>{{ key }}: {{ item }}</h3>
+    </template>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      listFrameworks: {
+        name: "VUE 3",
+        description: "JavaScript-Framework",
+        language: "JavaScript",
+      },
+    };
+  },
+};
+</script>
+```
+
+### 6. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1>
+      List Rendering
+    </h1>
+    <template v-for="(item, key, index) in listFrameworks" :key="index">
+      <h3>{{ key }}: {{ item }} ({{index}})</h3>
     </template>
   </div>
 </template>
@@ -934,12 +1064,6 @@ export default {
 export default {
   name: "App",
   //
-  data() {
-    return {
-      names: ["Olaf", "Armin", "Annalena"],
-    };
-  },
-  //
   methods: {
     add() {
       return 1 + 2 + 3 + 4 + 5 + 6;
@@ -986,7 +1110,16 @@ export default {
     <h1>
       Methods
     </h1>
-    <h4>Multipliziere die Variable price mit dem normalen Mehrwertsteuersatz {{ taxRate }} = {{ multiply(price) }} </h4>
+    <h4>
+      Multipliziere die Variable price mit dem normalen Mehrwertsteuersatz:
+    </h4>
+    <div>
+      Steuersatz: {{ taxRate }}
+      <br />
+      Netto-Preis: {{ price }}
+      <br />
+      Brutto-Preis: {{ multiply(price) }}
+    </div>
   </div>
 </template>
 <script>
@@ -1002,11 +1135,12 @@ export default {
   //
   methods: {
     multiply(num) {
-      return num * (100 + this.taxRate) / 100;
-    }
+      return (num * (100 + this.taxRate) / 100);
+    },
   },
 };
 </script>
+
 ```
 
 ## Event Handling
@@ -1023,7 +1157,9 @@ export default {
     </h1>
     <h5>{{ name }}</h5>
     <div class="mt-8">
-      <button v-on:click="name = 'Annalena'" class="btn btn-sm btn-primary">Ändere den Namen</button>
+      <button v-on:click="name = 'Annalena'" class="btn btn-sm btn-primary">
+        Ändere den Namen
+      </button>
     </div>
   </div>
 </template>
@@ -2679,8 +2815,11 @@ export default {
   //
   computed: {
     sumNumberOfMatches() {
-     return this.players.reduce((total, current) => (total = total + current.numberOfMatches), 0) ;
-    }
+      return this.players.reduce(
+        (total, current) => (total = total + current.numberOfMatches),
+        0
+      );
+    },
   },
 };
 </script>
@@ -2697,7 +2836,19 @@ export default {
       Computed Properties
     </h1>
     <div>
-      <button v-on:click="players.push({id: 4, firstName: 'Hannes', lastName: 'Bongartz', numberOfMatches: 189})" class="btn btn-sm btn-primary">Mit Hannes</button>
+      <button
+        v-on:click="
+          players.push({
+            id: 4,
+            firstName: 'Hannes',
+            lastName: 'Bongartz',
+            numberOfMatches: 189,
+          })
+        "
+        class="btn btn-sm btn-primary"
+      >
+        Mit Hannes
+      </button>
     </div>
     <h4>
       Bundeligaspiele Summe:
@@ -2739,8 +2890,11 @@ export default {
   //
   computed: {
     sumNumberOfMatches() {
-     return this.players.reduce((total, current) => (total = total + current.numberOfMatches), 0) ;
-    }
+      return this.players.reduce(
+        (total, current) => (total = total + current.numberOfMatches),
+        0
+      );
+    },
   },
 };
 </script>
@@ -2757,7 +2911,19 @@ export default {
       Computed Properties
     </h1>
     <div>
-      <button v-on:click="players.push({id: 4, firstName: 'Hannes', lastName: 'Bongartz', numberOfMatches: 189})" class="btn btn-sm btn-primary">Mit Hannes</button>
+      <button
+        v-on:click="
+          players.push({
+            id: 4,
+            firstName: 'Hannes',
+            lastName: 'Bongartz',
+            numberOfMatches: 189,
+          })
+        "
+        class="btn btn-sm btn-primary"
+      >
+        Mit Hannes
+      </button>
     </div>
     <h4>
       Bundeligaspiele Summe (computed):
@@ -2802,17 +2968,24 @@ export default {
   },
   methods: {
     getSumNumberOfMatches() {
-     return this.players.reduce((total, current) => (total = total + current.numberOfMatches), 0) ; 
-    }
+      return this.players.reduce(
+        (total, current) => (total = total + current.numberOfMatches),
+        0
+      );
+    },
   },
   //
   computed: {
     sumNumberOfMatches() {
-     return this.players.reduce((total, current) => (total = total + current.numberOfMatches), 0) ;
-    }
+      return this.players.reduce(
+        (total, current) => (total = total + current.numberOfMatches),
+        0
+      );
+    },
   },
 };
 </script>
+
 ```
 
 ### 6. Beispiel
@@ -3091,6 +3264,61 @@ export default {
 };
 </script>
 ```
+### 2. Beispiel
+
+#### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center">
+      <h1>
+        Watchers
+      </h1>
+      <h2>Lautstärke</h2>
+    </div>
+    <h3>
+      <progress
+        class="progress progress-primary"
+        v-bind:value="volume"
+        max="5"
+      ></progress>
+    </h3>
+    <h4 class="text-center">{{ volume }}</h4>
+    <div class="mt-4 btn-group justify-center">
+      <button class="btn btn-sm btn-warning" v-on:click="volume -= 1">-</button>
+      <button class="btn btn-sm btn-success" v-on:click="volume += 1">+</button>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+  //
+  data() {
+    return {
+      volume: 0,
+    };
+  },
+  //
+  watch: {
+    volume(newVolume, oldVolume) {
+      if (newVolume > oldVolume && oldVolume === 4) {
+        alert("Achtung: diese Lautstärke gefährdet ihre Gesundheit");
+      }
+      //
+      if (newVolume < 0) {
+        this.volume = 0;
+      }
+      //
+      if (newVolume > 5) {
+        this.volume = 5;
+      }
+    },
+  },
+};
+</script>
+```
 
 ## Immediate and Deep Watchers
 
@@ -3210,8 +3438,9 @@ export default {
   },
 };
 </script>
+
 ```
 
 ## Summary
 
-<img src="images/02_Single_file_component.png" alt="Summary Single File Component" width="100%"/>
+<img src="images/02_Single_file_component.png" alt="Summary Single File Component" width="80%"/>

@@ -1,0 +1,115 @@
+# Starting position
+
+## Installation (Windows)
+
+```js
+    winpty vue.cmd create vue3
+    cd vue3
+    vue add tailwind
+    npm install daisyui --save
+    npm install @tailwindcss/typography --save
+```
+
+### main.js
+
+```js
+import { createApp } from "vue";
+import App from "./App.vue";
+import "./assets/tailwind.css";
+createApp(App).mount("#app");
+```
+
+### tailwind.config.js
+
+```js
+module.exports = {
+  purge: { content: ["./public/**/*.html", "./src/**/*.vue"] },
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [require("daisyui"), require("@tailwindcss/typography")],
+};
+```
+
+### tailwind.css
+
+```js
+tailwind.config.js;
+```
+
+### App.vue
+
+```js
+<template>
+  <div class="container px-6 py-16 prose">
+    <h1 class="text-center">
+      Ausgangsposition
+    </h1>
+  </div>
+</template>
+<script>
+export default {
+  name: "App",
+};
+</script>
+```
+
+### package.json
+
+```js
+{
+  "name": "hello-world",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "@tailwindcss/typography": "^0.4.0",
+    "autoprefixer": "^9",
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "lodash": "^4.17.21",
+    "postcss": "^7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "babel-eslint": "^10.1.0",
+    "daisyui": "^1.2.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.0.0",
+    "vue-cli-plugin-tailwind": "~2.0.6"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
+```

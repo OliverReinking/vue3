@@ -233,9 +233,7 @@ export default {
       <h1>
         Prop Types and Validations
       </h1>
-      <Spielbericht
-        id="1904"
-      />
+      <Spielbericht id="1904" />
     </div>
   </div>
 </template>
@@ -278,9 +276,7 @@ export default {
       <h1>
         Prop Types and Validations
       </h1>
-      <Spielbericht
-        id="1904"
-      />
+      <Spielbericht id="1904" />
     </div>
   </div>
 </template>
@@ -322,9 +318,7 @@ export default {
       <h1>
         Prop Types and Validations
       </h1>
-      <Spielbericht
-        id="1904"
-      />
+      <Spielbericht id="1904"/>
     </div>
   </div>
 </template>
@@ -366,9 +360,7 @@ export default {
       <h1>
         Prop Types and Validations
       </h1>
-      <Spielbericht
-        id="1904"
-      />
+      <Spielbericht id="1904" />
     </div>
   </div>
 </template>
@@ -412,9 +404,7 @@ export default {
       <h1>
         Prop Types and Validations
       </h1>
-      <Spielbericht
-        id="1904"
-      />
+        <Spielbericht id="1904" />
     </div>
   </div>
 </template>
@@ -455,25 +445,46 @@ export default {
 #### App.vue (Parent)
 
 ```js
-
+<template>
+  <div class="container px-6 py-16 max-w-md mx-auto">
+    <div class="prose text-center">
+      <h1>
+        Provide & Inject
+      </h1>
+      <Inject />
+    </div>
+  </div>
+</template>
+<script>
+import Inject from "./components/Inject.vue";
+export default {
+  name: "App",
+  //
+  components: {
+    Inject,
+  },
+  //
+  provide: {
+    userName: "Klaus Fichtel",
+  },
+};
+</script>
 ```
 
 #### Inject.vue (Child)
 
 ```js
 <template>
-    <div>
-        {{ userName }}
-    </div>
+  <div>
+    {{ userName }}
+  </div>
 </template>
 <script>
-    export default {
-        name: "Inject",
-        //
-        inject: [
-            'userName'
-        ]
-    }
+export default {
+  name: "Inject",
+  //
+  inject: ["userName"],
+};
 </script>
 ```
 
@@ -2232,7 +2243,13 @@ export default {
 </script>
 ```
 
+## HTTP
+
+<img src="images/05_HTTP.png" alt="HTTP" width="80%"/>
+
 ## HTTP Get
+
+
 
 ### 1. Beispiel
 

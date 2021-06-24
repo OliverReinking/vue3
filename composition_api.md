@@ -1,5 +1,7 @@
 # Composition API
 
+<img src="images/06_Composition_API.png" alt="Composition API" width="80%"/>
+
 ## Replacing data with ref 
 
 ### 1. Beispiel
