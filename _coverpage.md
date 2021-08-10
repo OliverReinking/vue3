@@ -4,4 +4,4 @@
 [Amazon](http://www.amazon.de/gp/offer-listing/3754149628/ref=olp_f_freeShipping?ie=UTF8&f_freeShipping=true&f_new=true)
 [Zum Inhalt](/README.md)
 
-![color](#34495E)
+![color](#CFFBE3)
